@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>Avocat Viorel Dodan</title>
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icon.svg">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Splash / Intro cinematic -->
+  <div id="splash" class="splash" aria-hidden="true">
+    <div class="splash-card">
+      <img src="assets/logo.svg" alt="VD" class="splash-logo" />
+      <div class="splash-sub">AVOCAT • VIOREL DODAN</div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/logo.svg" alt="Logo" class="brand-logo" />
+      <div class="brand-text">
+        <div class="brand-title">Avocat Viorel Dodan</div>
+        <div class="brand-tag">Integritate • Profesionalism • Rezultate</div>
+      </div>
+    </div>
+
+    <div class="lang">
+      <button class="chip active" data-lang="ro">RO</button>
+      <button class="chip" data-lang="it">IT</button>
+      <button class="chip" data-lang="ru">RU</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <div class="hero-left">
+        <!-- Poza ta: înlocuim după ce îmi dai un link/poză. -->
+        <img class="hero-photo" src="assets/hero-placeholder.jpg" alt="Avocat Viorel Dodan" />
+      </div>
+
+      <div class="hero-right">
+        <div class="wow" data-i18n="wow">
+          Consultanță juridică pentru moldovenii din diaspora
+        </div>
+
+        <div class="badge">
+          <span class="star">★</span>
+          <span data-i18n="badge">16+ ani experiență juridică</span>
+        </div>
+
+        <div class="pill" data-i18n="pill">
+          Divorț • Drept civil • Dreptul familiei
+        </div>
+
+        <div class="cta">
+          <a class="btn primary" href="#consult" data-i18n="cta">Solicită consultanță</a>
+          <div class="quick">
+            <a class="btn ghost" href="tel:+37369968269">📞 <span data-i18n="call">Sună acum</span></a>
+            <a class="btn ghost" href="https://wa.me/37369968269" target="_blank" rel="noreferrer">💬 WhatsApp</a>
+            <a class="btn ghost" href="viber://chat?number=%2B37369968269">💜 Viber</a>
+            <a class="btn ghost" href="#programare" data-i18n="book">📅 Programare</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="consult" class="grid">
+      <section class="card">
+        <h2 data-i18n="consultTitle">Solicită consultanță</h2>
+        <p class="muted" data-i18n="consultDesc">
+          Trimite un mesaj scurt și te contactez cât mai rapid.
+        </p>
+
+        <!-- Formular simplu (gratis). Mai târziu îl conectăm la Google Form / email / WhatsApp. -->
+        <form id="leadForm" class="form">
+          <label>
+            <span data-i18n="name">Nume</span>
+            <input required name="name" autocomplete="name" />
+          </label>
+
+          <label>
+            <span data-i18n="phone">Telefon</span>
+            <input required name="phone" inputmode="tel" />
+          </label>
+
+          <label>
+            <span data-i18n="topic">Subiect</span>
+            <select name="topic">
+              <option>Divorț</option>
+              <option>Pensie alimentară</option>
+              <option>Domiciliul copiilor</option>
+              <option>Drept civil</option>
+              <option>Altul</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="msg">Mesaj</span>
+            <textarea required name="message" rows="4" placeholder="Scrie pe scurt problema ta…"></textarea>
+          </label>
+
+          <button class="btn primary" type="submit" data-i18n="send">Trimite</button>
+
+          <div class="tiny muted">
+            <span data-i18n="privacy">
+              Confidențialitate: mesajul este trimis direct către avocat.
+            </span>
+          </div>
+        </form>
+      </section>
+
+      <section id="programare" class="card">
+        <h2 data-i18n="bookTitle">Programare online</h2>
+        <p class="muted" data-i18n="bookDesc">
+          Alege un interval disponibil. (În etapa 1 folosim un link gratuit.)
+        </p>
+
+        <div class="actions">
+          <!-- Înlocuiește linkul cu Calendly / Google Calendar appointment / orice vrei -->
+          <a class="btn primary" href="https://calendly.com/" target="_blank" rel="noreferrer">
+            <span data-i18n="openCal">Deschide calendarul</span> →
+          </a>
+          <a class="btn ghost" href="mailto:viorel.dodan@justice.md?subject=Programare%20consultanta" data-i18n="emailBook">
+            Trimite email pentru programare
+          </a>
+        </div>
+
+        <div class="note">
+          <strong data-i18n="tip">Tip:</strong>
+          <span data-i18n="tipText">după ce setăm calendarul tău, înlocuim linkul de mai sus.</span>
+        </div>
+      </section>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="servicesTitle">Servicii</h2>
+      <div class="services">
+        <div class="svc">✅ <span data-i18n="s1">Divorț (inclusiv la distanță)</span></div>
+        <div class="svc">✅ <span data-i18n="s2">Pensie alimentară</span></div>
+        <div class="svc">✅ <span data-i18n="s3">Stabilirea domiciliului copiilor</span></div>
+        <div class="svc">✅ <span data-i18n="s4">Decăderea din drepturi părintești</span></div>
+        <div class="svc">✅ <span data-i18n="s5">Drept civil</span></div>
+        <div class="svc">✅ <span data-i18n="s6">Consultanță pentru diaspora</span></div>
+      </div>
+    </section>
+
+    <section class="card" id="contact">
+      <h2 data-i18n="contactTitle">Contact</h2>
+      <div class="contact">
+        <a class="btn ghost" href="tel:+37369968269">📞 +373 69 968 269</a>
+        <a class="btn ghost" href="https://wa.me/37369968269" target="_blank" rel="noreferrer">💬 WhatsApp</a>
+        <a class="btn ghost" href="viber://chat?number=%2B37369968269">💜 Viber</a>
+        <a class="btn ghost" href="mailto:viorel.dodan@justice.md">✉️ viorel.dodan@justice.md</a>
+        <a class="btn ghost" href="https://www.vioreldodan.com" target="_blank" rel="noreferrer">🌐 vioreldodan.com</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="muted">
+        © <span id="year"></span> Avocat Viorel Dodan • PWA
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
