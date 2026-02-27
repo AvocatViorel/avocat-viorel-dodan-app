@@ -1,3 +1,6 @@
+// SAFE APP.JS (nu blochează pagina dacă lipsește ceva)
+function $(id){ return document.getElementById(id); }
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js").catch(() => {});
@@ -5,92 +8,80 @@ if ("serviceWorker" in navigator) {
 }
 
 window.addEventListener("load", () => {
-  const splash = document.getElementById("splash");
-  setTimeout(() => splash.classList.add("hide"), 2100);
-});
+  const splash = $("splash");
+  if (splash) setTimeout(() => splash.classList.add("hide"), 2100);
 
-document.getElementById("year").textContent = new Date().getFullYear();
+  const year = $("year");
+  if (year) year.textContent = new Date().getFullYear();
 
-(function () {
+  // iPhone install hint
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
   const isInStandalone =
     window.matchMedia("(display-mode: standalone)").matches ||
     window.navigator.standalone === true;
 
   if (isIOS && !isInStandalone) {
-    const hint = document.getElementById("iosInstallHint");
+    const hint = $("iosInstallHint");
     if (hint) hint.style.display = "block";
   }
-})();
-
-document.getElementById("leadForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const data = Object.fromEntries(new FormData(e.target).entries());
-
-  const text = [
-    "Solicitare consultanță",
-    `Nume: ${data.name}`,
-    `Telefon: ${data.phone}`,
-    `Subiect: ${data.topic}`,
-    `Mesaj: ${data.message}`,
-  ].join("\n");
-
-  const url = "https://wa.me/37369968269?text=" + encodeURIComponent(text);
-  window.open(url, "_blank", "noreferrer");
-  e.target.reset();
 });
 
+// WhatsApp form
+const form = $("leadForm");
+if (form) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    const text = [
+      "Solicitare consultanță",
+      `Nume: ${data.name || ""}`,
+      `Telefon: ${data.phone || ""}`,
+      `Subiect: ${data.topic || ""}`,
+      `Mesaj: ${data.message || ""}`,
+    ].join("\n");
+    const url = "https://wa.me/37369968269?text=" + encodeURIComponent(text);
+    window.open(url, "_blank", "noreferrer");
+    form.reset();
+  });
+}
+
+// Modal servicii (detalii)
 const serviceDetails = {
   divort: {
     title: "Divorț (inclusiv la distanță)",
     html: `
-      <p><strong>Ce include:</strong> consultanță, pregătirea actelor, reprezentare, strategie procedurală.</p>
+      <p><strong>Ce include:</strong> consultanță, pregătirea actelor, reprezentare.</p>
       <h3>Pentru diaspora</h3>
       <ul>
-        <li>Lucrăm la distanță (după caz, cu procură unde este necesar).</li>
+        <li>Lucrăm la distanță (după caz, cu procură).</li>
         <li>Îți spun exact ce documente trebuie și cum le trimiți.</li>
-      </ul>
-      <h3>De obicei ai nevoie de</h3>
-      <ul>
-        <li>Act de identitate (copie)</li>
-        <li>Certificat de căsătorie (copie)</li>
-        <li>Certificate de naștere ale copiilor (dacă există)</li>
       </ul>
     `
   },
   pensie: {
     title: "Pensie de întreținere (pensie alimentară)",
     html: `
-      <p><strong>Corect:</strong> „pensie de întreținere (pensie alimentară)”. Mulți spun și „alimente”.</p>
-      <h3>Te pot ajuta cu</h3>
-      <ul>
-        <li>Stabilirea pensiei</li>
-        <li>Majorare / micșorare</li>
-        <li>Recuperarea restanțelor</li>
-        <li>Executarea când nu se plătește</li>
-      </ul>
+      <p>Stabilire, majorare/micșorare, recuperare restanțe, executare.</p>
+      <p><strong>Corect:</strong> „pensie de întreținere (pensie alimentară)”.</p>
     `
   },
   domiciliu: {
     title: "Stabilirea domiciliului copiilor",
     html: `
-      <p>Se bazează pe <strong>interesul superior al copilului</strong>.</p>
-      <h3>Include</h3>
+      <p>Se aplică principiul <strong>interesului superior al copilului</strong>.</p>
       <ul>
-        <li>Stabilirea domiciliului</li>
+        <li>Domiciliu</li>
         <li>Custodie / program de vizitare</li>
-        <li>Probe relevante (condiții de trai, implicare, stabilitate)</li>
       </ul>
     `
   },
   decadere: {
     title: "Decăderea din drepturi părintești",
     html: `
-      <p>Procedură <strong>serioasă</strong>, pentru situații grave (abuz, violență, abandon, neglijență severă).</p>
-      <h3>Ce facem</h3>
+      <p>Procedură serioasă pentru situații grave (abuz, violență, abandon, neglijență severă).</p>
       <ul>
         <li>Analiză juridică</li>
-        <li>Pregătire probatoriu</li>
+        <li>Probatoriu</li>
         <li>Reprezentare în instanță</li>
       </ul>
     `
@@ -98,7 +89,6 @@ const serviceDetails = {
   civil: {
     title: "Drept civil",
     html: `
-      <h3>Exemple</h3>
       <ul>
         <li>Contracte</li>
         <li>Recuperare datorii</li>
@@ -110,32 +100,33 @@ const serviceDetails = {
   diaspora: {
     title: "Consultanță pentru diaspora",
     html: `
-      <p>Lucrăm eficient chiar dacă ești în Italia sau în altă țară.</p>
       <ul>
         <li>Consultare online</li>
         <li>Acte scanate / poze</li>
-        <li>Ghidare pentru procură și pași</li>
+        <li>Ghidare pentru procură</li>
         <li>Reprezentare în Moldova</li>
       </ul>
     `
   }
 };
 
-const modal = document.getElementById("serviceModal");
-const modalTitle = document.getElementById("modalTitle");
-const modalBody = document.getElementById("modalBody");
-const modalClose = document.getElementById("modalClose");
+const modal = $("serviceModal");
+const modalTitle = $("modalTitle");
+const modalBody = $("modalBody");
+const modalClose = $("modalClose");
 
-function openModal(serviceKey) {
-  const data = serviceDetails[serviceKey];
+function openModal(key){
+  if (!modal || !modalTitle || !modalBody) return;
+  const data = serviceDetails[key];
   if (!data) return;
 
   modalTitle.textContent = "✅ " + data.title;
   modalBody.innerHTML = data.html;
 
-  const topicSelect = document.getElementById("topicSelect");
+  // preselect topic (dacă există)
+  const topicSelect = $("topicSelect");
   if (topicSelect) {
-    const mapping = {
+    const map = {
       divort: "Divorț",
       pensie: "Pensie de întreținere (pensie alimentară)",
       domiciliu: "Stabilirea domiciliului copiilor",
@@ -143,120 +134,22 @@ function openModal(serviceKey) {
       civil: "Drept civil",
       diaspora: "Consultanță diaspora",
     };
-    if (mapping[serviceKey]) topicSelect.value = mapping[serviceKey];
+    if (map[key]) topicSelect.value = map[key];
   }
 
   modal.classList.remove("hidden");
-  modal.setAttribute("aria-hidden", "false");
+  modal.setAttribute("aria-hidden","false");
 }
-function closeModal() {
+function closeModal(){
+  if (!modal) return;
   modal.classList.add("hidden");
-  modal.setAttribute("aria-hidden", "true");
+  modal.setAttribute("aria-hidden","true");
 }
 
-modalClose.addEventListener("click", closeModal);
-modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+if (modalClose) modalClose.addEventListener("click", closeModal);
+if (modal) modal.addEventListener("click", (e)=>{ if (e.target === modal) closeModal(); });
+document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeModal(); });
 
-document.querySelectorAll(".service-card").forEach(btn => {
-  btn.addEventListener("click", () => openModal(btn.dataset.service));
+document.querySelectorAll(".service-card").forEach(btn=>{
+  btn.addEventListener("click", ()=> openModal(btn.dataset.service));
 });
-
-const i18n = {
-  ro: {
-    wow: "Consultanță juridică pentru moldovenii din diaspora",
-    badge: "16+ ani experiență juridică",
-    pill: "Divorț • Drept civil • Dreptul familiei",
-    cta: "Solicită consultanță",
-    call: "Sună acum",
-    book: "Programare",
-    navServices: "📌 Servicii",
-    navConsult: "✉️ Consultanță",
-    navContact: "📍 Contact",
-    consultTitle: "Solicită consultanță",
-    consultDesc: "Trimite un mesaj scurt și te contactez cât mai rapid.",
-    name: "Nume",
-    phone: "Telefon",
-    topic: "Subiect",
-    msg: "Mesaj",
-    send: "Trimite",
-    privacy: "Confidențialitate: mesajul este trimis direct către avocat.",
-    bookTitle: "Programare online",
-    bookDesc: "Alege un interval disponibil. (În etapa 1 folosim un link gratuit.)",
-    openCal: "Deschide calendarul",
-    emailBook: "Trimite email pentru programare",
-    tip: "Tip:",
-    tipText: "după ce setăm calendarul tău, înlocuim linkul de mai sus.",
-    servicesTitle: "Servicii",
-    servicesHint: "Apasă pe un serviciu pentru detalii.",
-    contactTitle: "Contact",
-  },
-  it: {
-    wow: "Consulenza legale per i moldavi della diaspora",
-    badge: "16+ anni di esperienza legale",
-    pill: "Divorzio • Diritto civile • Diritto di famiglia",
-    cta: "Richiedi consulenza",
-    call: "Chiama ora",
-    book: "Appuntamento",
-    navServices: "📌 Servizi",
-    navConsult: "✉️ Consulenza",
-    navContact: "📍 Contatti",
-    consultTitle: "Richiedi consulenza",
-    consultDesc: "Invia un breve messaggio e ti contatterò al più presto.",
-    name: "Nome",
-    phone: "Telefono",
-    topic: "Argomento",
-    msg: "Messaggio",
-    send: "Invia",
-    privacy: "Privacy: il messaggio viene inviato direttamente all’avvocato.",
-    bookTitle: "Appuntamento online",
-    bookDesc: "Scegli uno slot disponibile. (Fase 1: link gratuito.)",
-    openCal: "Apri il calendario",
-    emailBook: "Invia email per appuntamento",
-    tip: "Suggerimento:",
-    tipText: "dopo aver impostato il tuo calendario, sostituiamo il link qui sopra.",
-    servicesTitle: "Servizi",
-    servicesHint: "Tocca un servizio per i dettagli.",
-    contactTitle: "Contatti",
-  },
-  ru: {
-    wow: "Юридическая консультация для молдавской диаспоры",
-    badge: "16+ лет юридического опыта",
-    pill: "Развод • Гражданское право • Семейное право",
-    cta: "Запросить консультацию",
-    call: "Позвонить",
-    book: "Запись",
-    navServices: "📌 Услуги",
-    navConsult: "✉️ Консультация",
-    navContact: "📍 Контакты",
-    consultTitle: "Запросить консультацию",
-    consultDesc: "Отправьте короткое сообщение — я свяжусь с вами как можно быстрее.",
-    name: "Имя",
-    phone: "Телефон",
-    topic: "Тема",
-    msg: "Сообщение",
-    send: "Отправить",
-    privacy: "Конфиденциальность: сообщение отправляется напрямую адвокату.",
-    bookTitle: "Онлайн-запись",
-    bookDesc: "Выберите доступное время. (Этап 1: бесплатная ссылка.)",
-    openCal: "Открыть календарь",
-    emailBook: "Отправить email для записи",
-    tip: "Совет:",
-    tipText: "после настройки вашего календаря заменим ссылку выше.",
-    servicesTitle: "Услуги",
-    servicesHint: "Нажмите на услугу для деталей.",
-    contactTitle: "Контакты",
-  }
-};
-
-function setLang(lang) {
-  document.documentElement.lang = lang;
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.getAttribute("data-i18n");
-    if (i18n[lang] && i18n[lang][key]) el.textContent = i18n[lang][key];
-  });
-  document.querySelectorAll(".chip").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
-  localStorage.setItem("lang", lang);
-}
-document.querySelectorAll(".chip").forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.lang)));
-setLang(localStorage.getItem("lang") || "ro");
