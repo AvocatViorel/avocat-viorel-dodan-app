@@ -1,4 +1,4 @@
-const CACHE = "vd-pwa-v100"; // schimbă numărul dacă mai faci update
+const CACHE = "vd-pwa-v200";
 const ASSETS = [
   "./",
   "./index.html",
