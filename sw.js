@@ -1,4 +1,4 @@
-const CACHE = "vd-pwa-v999";
+const CACHE = "vd-pwa-fix-2";
 const ASSETS = [
   "./",
   "./index.html",
