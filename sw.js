@@ -1,4 +1,4 @@
-const CACHE = "vd-pwa-v200";
+const CACHE = "vd-pwa-v300";
 const ASSETS = [
   "./",
   "./index.html",
@@ -7,7 +7,18 @@ const ASSETS = [
   "./manifest.webmanifest",
   "./assets/logo.svg",
   "./assets/icon.svg",
-  "./assets/hero-placeholder.jpg"
+  "./assets/hero-placeholder.jpg",
+
+  "./assets/icons/icon-192.png",
+  "./assets/icons/icon-512.png",
+  "./assets/icons/maskable-192.png",
+  "./assets/icons/maskable-512.png",
+  "./assets/icons/apple-touch-icon-180.png",
+  "./assets/icons/apple-touch-icon-167.png",
+  "./assets/icons/apple-touch-icon-152.png",
+  "./assets/icons/apple-touch-icon-120.png",
+  "./assets/icons/favicon-32.png",
+  "./assets/icons/favicon-16.png"
 ];
 
 self.addEventListener("install", (e) => {
