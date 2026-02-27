@@ -1,20 +1,16 @@
-// Register service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js").catch(() => {});
   });
 }
 
-// Splash hide (cinematic)
 window.addEventListener("load", () => {
   const splash = document.getElementById("splash");
   setTimeout(() => splash.classList.add("hide"), 2100);
 });
 
-// Footer year
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// iPhone install hint (PWA Premium)
 (function () {
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
   const isInStandalone =
@@ -27,7 +23,6 @@ document.getElementById("year").textContent = new Date().getFullYear();
   }
 })();
 
-// Lead form -> WhatsApp message
 document.getElementById("leadForm").addEventListener("submit", (e) => {
   e.preventDefault();
   const data = Object.fromEntries(new FormData(e.target).entries());
@@ -45,7 +40,6 @@ document.getElementById("leadForm").addEventListener("submit", (e) => {
   e.target.reset();
 });
 
-// Descrieri servicii (RO)
 const serviceDetails = {
   divort: {
     title: "Divorț (inclusiv la distanță)",
@@ -127,7 +121,6 @@ const serviceDetails = {
   }
 };
 
-// Modal
 const modal = document.getElementById("serviceModal");
 const modalTitle = document.getElementById("modalTitle");
 const modalBody = document.getElementById("modalBody");
@@ -160,6 +153,7 @@ function closeModal() {
   modal.classList.add("hidden");
   modal.setAttribute("aria-hidden", "true");
 }
+
 modalClose.addEventListener("click", closeModal);
 modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
@@ -168,25 +162,6 @@ document.querySelectorAll(".service-card").forEach(btn => {
   btn.addEventListener("click", () => openModal(btn.dataset.service));
 });
 
-// Search services
-const search = document.getElementById("serviceSearch");
-const grid = document.getElementById("servicesGrid");
-function normalize(s) {
-  return (s || "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "");
-}
-function filterServices() {
-  const q = normalize(search.value.trim());
-  grid.querySelectorAll(".service-card").forEach(c => {
-    const hay = normalize(c.innerText + " " + (c.dataset.keywords || ""));
-    c.style.display = q === "" || hay.includes(q) ? "" : "none";
-  });
-}
-if (search) search.addEventListener("input", filterServices);
-
-// UI i18n
 const i18n = {
   ro: {
     wow: "Consultanță juridică pentru moldovenii din diaspora",
@@ -213,7 +188,7 @@ const i18n = {
     tip: "Tip:",
     tipText: "după ce setăm calendarul tău, înlocuim linkul de mai sus.",
     servicesTitle: "Servicii",
-    servicesHint: "Tastează un cuvânt (ex: „divorț”, „alimente”, „copii”, „contract”, „diaspora”), apoi apasă pe serviciu pentru detalii.",
+    servicesHint: "Apasă pe un serviciu pentru detalii.",
     contactTitle: "Contact",
   },
   it: {
@@ -241,7 +216,7 @@ const i18n = {
     tip: "Suggerimento:",
     tipText: "dopo aver impostato il tuo calendario, sostituiamo il link qui sopra.",
     servicesTitle: "Servizi",
-    servicesHint: "Cerca una parola (es: “divorzio”, “alimenti”, “figli”, “contratto”, “diaspora”), poi tocca il servizio per i dettagli.",
+    servicesHint: "Tocca un servizio per i dettagli.",
     contactTitle: "Contatti",
   },
   ru: {
@@ -269,10 +244,11 @@ const i18n = {
     tip: "Совет:",
     tipText: "после настройки вашего календаря заменим ссылку выше.",
     servicesTitle: "Услуги",
-    servicesHint: "Введите слово (например: «развод», «алименты», «дети», «договор», «диаспора»), затем нажмите на услугу для деталей.",
+    servicesHint: "Нажмите на услугу для деталей.",
     contactTitle: "Контакты",
   }
 };
+
 function setLang(lang) {
   document.documentElement.lang = lang;
   document.querySelectorAll("[data-i18n]").forEach(el => {
