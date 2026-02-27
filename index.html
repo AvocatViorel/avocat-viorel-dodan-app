@@ -38,9 +38,9 @@
   </header>
 
   <main class="container">
-    <section class="hero card">
+    <!-- HERO -->
+    <section class="hero card" id="home">
       <div class="hero-left">
-        <!-- Poza ta: înlocuim după ce îmi dai un link/poză. -->
         <img class="hero-photo" src="assets/hero-placeholder.jpg" alt="Avocat Viorel Dodan" />
       </div>
 
@@ -59,7 +59,14 @@
         </div>
 
         <div class="cta">
+          <div class="navbtns">
+            <a class="btn ghost" href="#services" data-i18n="navServices">📌 Servicii</a>
+            <a class="btn ghost" href="#consult" data-i18n="navConsult">✉️ Consultanță</a>
+            <a class="btn ghost" href="#contact" data-i18n="navContact">📍 Contact</a>
+          </div>
+
           <a class="btn primary" href="#consult" data-i18n="cta">Solicită consultanță</a>
+
           <div class="quick">
             <a class="btn ghost" href="tel:+37369968269">📞 <span data-i18n="call">Sună acum</span></a>
             <a class="btn ghost" href="https://wa.me/37369968269" target="_blank" rel="noreferrer">💬 WhatsApp</a>
@@ -70,6 +77,7 @@
       </div>
     </section>
 
+    <!-- CONSULT -->
     <section id="consult" class="grid">
       <section class="card">
         <h2 data-i18n="consultTitle">Solicită consultanță</h2>
@@ -77,7 +85,6 @@
           Trimite un mesaj scurt și te contactez cât mai rapid.
         </p>
 
-        <!-- Formular simplu (gratis). Mai târziu îl conectăm la Google Form / email / WhatsApp. -->
         <form id="leadForm" class="form">
           <label>
             <span data-i18n="name">Nume</span>
@@ -91,12 +98,14 @@
 
           <label>
             <span data-i18n="topic">Subiect</span>
-            <select name="topic">
-              <option>Divorț</option>
-              <option>Pensie alimentară</option>
-              <option>Domiciliul copiilor</option>
-              <option>Drept civil</option>
-              <option>Altul</option>
+            <select name="topic" id="topicSelect">
+              <option value="Divorț">Divorț</option>
+              <option value="Pensie de întreținere (pensie alimentară)">Pensie de întreținere (pensie alimentară)</option>
+              <option value="Stabilirea domiciliului copiilor">Stabilirea domiciliului copiilor</option>
+              <option value="Decăderea din drepturi părintești">Decăderea din drepturi părintești</option>
+              <option value="Drept civil">Drept civil</option>
+              <option value="Consultanță diaspora">Consultanță diaspora</option>
+              <option value="Altul">Altul</option>
             </select>
           </label>
 
@@ -122,7 +131,6 @@
         </p>
 
         <div class="actions">
-          <!-- Înlocuiește linkul cu Calendly / Google Calendar appointment / orice vrei -->
           <a class="btn primary" href="https://calendly.com/" target="_blank" rel="noreferrer">
             <span data-i18n="openCal">Deschide calendarul</span> →
           </a>
@@ -138,18 +146,61 @@
       </section>
     </section>
 
-    <section class="card">
-      <h2 data-i18n="servicesTitle">Servicii</h2>
-      <div class="services">
-        <div class="svc">✅ <span data-i18n="s1">Divorț (inclusiv la distanță)</span></div>
-        <div class="svc">✅ <span data-i18n="s2">Pensie alimentară</span></div>
-        <div class="svc">✅ <span data-i18n="s3">Stabilirea domiciliului copiilor</span></div>
-        <div class="svc">✅ <span data-i18n="s4">Decăderea din drepturi părintești</span></div>
-        <div class="svc">✅ <span data-i18n="s5">Drept civil</span></div>
-        <div class="svc">✅ <span data-i18n="s6">Consultanță pentru diaspora</span></div>
+    <!-- SERVICES -->
+    <section class="card" id="services">
+      <div class="row">
+        <h2 data-i18n="servicesTitle">Servicii</h2>
+        <a class="btn ghost" href="#home">↑ Home</a>
+      </div>
+
+      <p class="muted" data-i18n="servicesHint">
+        Tastează un cuvânt (ex: „divorț”, „alimente”, „copii”, „contract”, „diaspora”), apoi apasă pe serviciu pentru detalii.
+      </p>
+
+      <div class="service-search">
+        <input id="serviceSearch" placeholder="Caută serviciu… (ex: divorț, alimente, copii)" />
+      </div>
+
+      <div id="servicesGrid" class="services-grid">
+        <!-- Divorț -->
+        <button class="service-card" data-service="divort" data-keywords="divorț divort desfacerea casatoriei căsătoriei distanță diaspora fără prezență procura actele">
+          <div class="service-title">✅ Divorț (inclusiv la distanță)</div>
+          <div class="service-sub">Procedură completă, acte, reprezentare, inclusiv pentru diaspora.</div>
+        </button>
+
+        <!-- Pensie întreținere -->
+        <button class="service-card" data-service="pensie" data-keywords="pensie întreținere intretinere alimente pensie alimentară alimentara majorare recuperare restanțe executare">
+          <div class="service-title">✅ Pensie de întreținere (pensie alimentară)</div>
+          <div class="service-sub">Stabilire, majorare, recuperare restanțe, executare.</div>
+        </button>
+
+        <!-- Domiciliu copii -->
+        <button class="service-card" data-service="domiciliu" data-keywords="domiciliu copii minor minorului stabilirea domiciliului custodie custodia program vizitare">
+          <div class="service-title">✅ Stabilirea domiciliului copiilor</div>
+          <div class="service-sub">Domiciliu, custodie, program de vizitare, interesul superior al copilului.</div>
+        </button>
+
+        <!-- Decădere drepturi -->
+        <button class="service-card" data-service="decadere" data-keywords="decădere decdere drepturi părintești parintesti lipsire drepturi violență neglijență alcool abuz">
+          <div class="service-title">✅ Decăderea din drepturi părintești</div>
+          <div class="service-sub">Consultanță și reprezentare în proceduri sensibile, cu probatoriu.</div>
+        </button>
+
+        <!-- Civil -->
+        <button class="service-card" data-service="civil" data-keywords="drept civil contract datorii împrumut imprumut recuperare litigiu despăgubiri despagubiri succesiune moștenire mostenire">
+          <div class="service-title">✅ Drept civil</div>
+          <div class="service-sub">Contracte, datorii, litigii, despăgubiri, moșteniri.</div>
+        </button>
+
+        <!-- Diaspora -->
+        <button class="service-card" data-service="diaspora" data-keywords="diaspora italia străinătate strainatate fără prezență procura apostilă apostila acte online">
+          <div class="service-title">✅ Consultanță pentru diaspora</div>
+          <div class="service-sub">Lucrăm la distanță: acte, procuri, reprezentare în Moldova.</div>
+        </button>
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section class="card" id="contact">
       <h2 data-i18n="contactTitle">Contact</h2>
       <div class="contact">
@@ -167,6 +218,22 @@
       </div>
     </footer>
   </main>
+
+  <!-- Service modal -->
+  <div id="serviceModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div id="modalTitle" class="modal-title">Serviciu</div>
+        <button id="modalClose" class="btn ghost" type="button">✕</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+      <div class="modal-actions">
+        <a id="modalCta" class="btn primary" href="#consult">Solicită consultanță</a>
+        <a class="btn ghost" href="tel:+37369968269">📞 Sună acum</a>
+        <a class="btn ghost" href="https://wa.me/37369968269" target="_blank" rel="noreferrer">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
