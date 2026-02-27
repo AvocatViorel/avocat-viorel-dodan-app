@@ -13,8 +13,17 @@
   <title>Avocat Viorel Dodan</title>
 
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/icon.svg">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+
+  <!-- Apple touch icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="assets/icons/apple-touch-icon-167.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120.png">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -44,7 +53,7 @@
   </header>
 
   <main class="container">
-    <!-- iPhone install hint (PWA Premium) -->
+    <!-- iPhone install hint -->
     <div id="iosInstallHint" class="card ios-hint" style="display:none;">
       <strong>📱 Instalează aplicația pe iPhone:</strong>
       <div class="ios-hint-sub">
@@ -59,18 +68,14 @@
       </div>
 
       <div class="hero-right">
-        <div class="wow" data-i18n="wow">
-          Consultanță juridică pentru moldovenii din diaspora
-        </div>
+        <div class="wow" data-i18n="wow">Consultanță juridică pentru moldovenii din diaspora</div>
 
         <div class="badge">
           <span class="star">★</span>
           <span data-i18n="badge">16+ ani experiență juridică</span>
         </div>
 
-        <div class="pill" data-i18n="pill">
-          Divorț • Drept civil • Dreptul familiei
-        </div>
+        <div class="pill" data-i18n="pill">Divorț • Drept civil • Dreptul familiei</div>
 
         <div class="cta">
           <div class="navbtns">
@@ -95,9 +100,7 @@
     <section id="consult" class="grid">
       <section class="card">
         <h2 data-i18n="consultTitle">Solicită consultanță</h2>
-        <p class="muted" data-i18n="consultDesc">
-          Trimite un mesaj scurt și te contactez cât mai rapid.
-        </p>
+        <p class="muted" data-i18n="consultDesc">Trimite un mesaj scurt și te contactez cât mai rapid.</p>
 
         <form id="leadForm" class="form">
           <label>
@@ -131,18 +134,14 @@
           <button class="btn primary" type="submit" data-i18n="send">Trimite</button>
 
           <div class="tiny muted">
-            <span data-i18n="privacy">
-              Confidențialitate: mesajul este trimis direct către avocat.
-            </span>
+            <span data-i18n="privacy">Confidențialitate: mesajul este trimis direct către avocat.</span>
           </div>
         </form>
       </section>
 
       <section id="programare" class="card">
         <h2 data-i18n="bookTitle">Programare online</h2>
-        <p class="muted" data-i18n="bookDesc">
-          Alege un interval disponibil. (În etapa 1 folosim un link gratuit.)
-        </p>
+        <p class="muted" data-i18n="bookDesc">Alege un interval disponibil. (În etapa 1 folosim un link gratuit.)</p>
 
         <div class="actions">
           <a class="btn primary" href="https://calendly.com/" target="_blank" rel="noreferrer">
@@ -160,7 +159,7 @@
       </section>
     </section>
 
-    <!-- SERVICES -->
+    <!-- SERVICES (fără căutare) -->
     <section class="card" id="services">
       <div class="row">
         <h2 data-i18n="servicesTitle">Servicii</h2>
@@ -168,40 +167,36 @@
       </div>
 
       <p class="muted" data-i18n="servicesHint">
-        Tastează un cuvânt (ex: „divorț”, „alimente”, „copii”, „contract”, „diaspora”), apoi apasă pe serviciu pentru detalii.
+        Apasă pe un serviciu pentru detalii.
       </p>
 
-      <div class="service-search">
-        <input id="serviceSearch" placeholder="Caută serviciu… (ex: divorț, alimente, copii)" />
-      </div>
-
       <div id="servicesGrid" class="services-grid">
-        <button class="service-card" data-service="divort" data-keywords="divorț divort desfacerea casatoriei căsătoriei distanță diaspora fără prezență procura">
+        <button class="service-card" data-service="divort">
           <div class="service-title">✅ Divorț (inclusiv la distanță)</div>
           <div class="service-sub">Procedură completă, acte, reprezentare, inclusiv pentru diaspora.</div>
         </button>
 
-        <button class="service-card" data-service="pensie" data-keywords="pensie întreținere intretinere alimente pensie alimentară alimentara majorare recuperare restanțe executare">
+        <button class="service-card" data-service="pensie">
           <div class="service-title">✅ Pensie de întreținere (pensie alimentară)</div>
           <div class="service-sub">Stabilire, majorare, recuperare restanțe, executare.</div>
         </button>
 
-        <button class="service-card" data-service="domiciliu" data-keywords="domiciliu copii minor custodie program vizitare">
+        <button class="service-card" data-service="domiciliu">
           <div class="service-title">✅ Stabilirea domiciliului copiilor</div>
           <div class="service-sub">Domiciliu, custodie, program de vizitare, interesul copilului.</div>
         </button>
 
-        <button class="service-card" data-service="decadere" data-keywords="decădere decdere drepturi părintești parintesti violență abuz neglijență">
+        <button class="service-card" data-service="decadere">
           <div class="service-title">✅ Decăderea din drepturi părintești</div>
           <div class="service-sub">Proceduri sensibile, cu analiză și probatoriu.</div>
         </button>
 
-        <button class="service-card" data-service="civil" data-keywords="drept civil contract datorii recuperare litigiu despăgubiri moștenire succesiune">
+        <button class="service-card" data-service="civil">
           <div class="service-title">✅ Drept civil</div>
           <div class="service-sub">Contracte, datorii, litigii, despăgubiri, moșteniri.</div>
         </button>
 
-        <button class="service-card" data-service="diaspora" data-keywords="diaspora italia străinătate procura apostilă acte online">
+        <button class="service-card" data-service="diaspora">
           <div class="service-title">✅ Consultanță pentru diaspora</div>
           <div class="service-sub">Lucrăm la distanță: acte, procuri, reprezentare în Moldova.</div>
         </button>
@@ -221,9 +216,7 @@
     </section>
 
     <footer class="footer">
-      <div class="muted">
-        © <span id="year"></span> Avocat Viorel Dodan • PWA
-      </div>
+      <div class="muted">© <span id="year"></span> Avocat Viorel Dodan • PWA</div>
     </footer>
   </main>
 
