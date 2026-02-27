@@ -4,6 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#0b1220" />
+
+  <!-- PWA Premium iPhone -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Avocat Viorel Dodan">
+
   <title>Avocat Viorel Dodan</title>
 
   <link rel="manifest" href="manifest.webmanifest">
@@ -38,6 +44,12 @@
   </header>
 
   <main class="container">
+    <!-- iPhone install hint (PWA Premium) -->
+    <div id="iosInstallHint" class="card" style="margin-bottom:12px; display:none;">
+      <strong>📱 Instalează aplicația pe iPhone:</strong><br>
+      Deschide în <b>Safari</b> → apasă <b>Share</b> → <b>Add to Home Screen</b>
+    </div>
+
     <!-- HERO -->
     <section class="hero card" id="home">
       <div class="hero-left">
@@ -162,38 +174,32 @@
       </div>
 
       <div id="servicesGrid" class="services-grid">
-        <!-- Divorț -->
-        <button class="service-card" data-service="divort" data-keywords="divorț divort desfacerea casatoriei căsătoriei distanță diaspora fără prezență procura actele">
+        <button class="service-card" data-service="divort" data-keywords="divorț divort desfacerea casatoriei căsătoriei distanță diaspora fără prezență procura">
           <div class="service-title">✅ Divorț (inclusiv la distanță)</div>
           <div class="service-sub">Procedură completă, acte, reprezentare, inclusiv pentru diaspora.</div>
         </button>
 
-        <!-- Pensie întreținere -->
         <button class="service-card" data-service="pensie" data-keywords="pensie întreținere intretinere alimente pensie alimentară alimentara majorare recuperare restanțe executare">
           <div class="service-title">✅ Pensie de întreținere (pensie alimentară)</div>
           <div class="service-sub">Stabilire, majorare, recuperare restanțe, executare.</div>
         </button>
 
-        <!-- Domiciliu copii -->
-        <button class="service-card" data-service="domiciliu" data-keywords="domiciliu copii minor minorului stabilirea domiciliului custodie custodia program vizitare">
+        <button class="service-card" data-service="domiciliu" data-keywords="domiciliu copii minor custodie program vizitare">
           <div class="service-title">✅ Stabilirea domiciliului copiilor</div>
-          <div class="service-sub">Domiciliu, custodie, program de vizitare, interesul superior al copilului.</div>
+          <div class="service-sub">Domiciliu, custodie, program de vizitare, interesul copilului.</div>
         </button>
 
-        <!-- Decădere drepturi -->
-        <button class="service-card" data-service="decadere" data-keywords="decădere decdere drepturi părintești parintesti lipsire drepturi violență neglijență alcool abuz">
+        <button class="service-card" data-service="decadere" data-keywords="decădere decdere drepturi părintești parintesti violență abuz neglijență">
           <div class="service-title">✅ Decăderea din drepturi părintești</div>
-          <div class="service-sub">Consultanță și reprezentare în proceduri sensibile, cu probatoriu.</div>
+          <div class="service-sub">Proceduri sensibile, cu analiză și probatoriu.</div>
         </button>
 
-        <!-- Civil -->
-        <button class="service-card" data-service="civil" data-keywords="drept civil contract datorii împrumut imprumut recuperare litigiu despăgubiri despagubiri succesiune moștenire mostenire">
+        <button class="service-card" data-service="civil" data-keywords="drept civil contract datorii recuperare litigiu despăgubiri moștenire succesiune">
           <div class="service-title">✅ Drept civil</div>
           <div class="service-sub">Contracte, datorii, litigii, despăgubiri, moșteniri.</div>
         </button>
 
-        <!-- Diaspora -->
-        <button class="service-card" data-service="diaspora" data-keywords="diaspora italia străinătate strainatate fără prezență procura apostilă apostila acte online">
+        <button class="service-card" data-service="diaspora" data-keywords="diaspora italia străinătate procura apostilă acte online">
           <div class="service-title">✅ Consultanță pentru diaspora</div>
           <div class="service-sub">Lucrăm la distanță: acte, procuri, reprezentare în Moldova.</div>
         </button>
@@ -219,7 +225,7 @@
     </footer>
   </main>
 
-  <!-- Service modal -->
+  <!-- Modal serviciu -->
   <div id="serviceModal" class="modal hidden" aria-hidden="true">
     <div class="modal-card">
       <div class="modal-head">
