@@ -45,9 +45,11 @@
 
   <main class="container">
     <!-- iPhone install hint (PWA Premium) -->
-    <div id="iosInstallHint" class="card" style="margin-bottom:12px; display:none;">
-      <strong>📱 Instalează aplicația pe iPhone:</strong><br>
-      Deschide în <b>Safari</b> → apasă <b>Share</b> → <b>Add to Home Screen</b>
+    <div id="iosInstallHint" class="card ios-hint" style="display:none;">
+      <strong>📱 Instalează aplicația pe iPhone:</strong>
+      <div class="ios-hint-sub">
+        Deschide în <b>Safari</b> → apasă <b>Share</b> → <b>Add to Home Screen</b>
+      </div>
     </div>
 
     <!-- HERO -->
@@ -89,7 +91,7 @@
       </div>
     </section>
 
-    <!-- CONSULT -->
+    <!-- CONSULT + PROGRAMARE -->
     <section id="consult" class="grid">
       <section class="card">
         <h2 data-i18n="consultTitle">Solicită consultanță</h2>
@@ -234,7 +236,7 @@
       </div>
       <div id="modalBody" class="modal-body"></div>
       <div class="modal-actions">
-        <a id="modalCta" class="btn primary" href="#consult">Solicită consultanță</a>
+        <a class="btn primary" href="#consult">Solicită consultanță</a>
         <a class="btn ghost" href="tel:+37369968269">📞 Sună acum</a>
         <a class="btn ghost" href="https://wa.me/37369968269" target="_blank" rel="noreferrer">💬 WhatsApp</a>
       </div>
