@@ -140,7 +140,6 @@ function openModal(serviceKey) {
   modalTitle.textContent = "✅ " + data.title;
   modalBody.innerHTML = data.html;
 
-  // preselect topic in form
   const topicSelect = document.getElementById("topicSelect");
   if (topicSelect) {
     const mapping = {
@@ -157,32 +156,27 @@ function openModal(serviceKey) {
   modal.classList.remove("hidden");
   modal.setAttribute("aria-hidden", "false");
 }
-
 function closeModal() {
   modal.classList.add("hidden");
   modal.setAttribute("aria-hidden", "true");
 }
-
 modalClose.addEventListener("click", closeModal);
 modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 
-// Click pe card
 document.querySelectorAll(".service-card").forEach(btn => {
   btn.addEventListener("click", () => openModal(btn.dataset.service));
 });
 
-// Căutare servicii
+// Search services
 const search = document.getElementById("serviceSearch");
 const grid = document.getElementById("servicesGrid");
-
 function normalize(s) {
   return (s || "")
     .toLowerCase()
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "");
 }
-
 function filterServices() {
   const q = normalize(search.value.trim());
   grid.querySelectorAll(".service-card").forEach(c => {
@@ -192,7 +186,7 @@ function filterServices() {
 }
 if (search) search.addEventListener("input", filterServices);
 
-// Interfață RO/IT/RU (doar textele scurte)
+// UI i18n
 const i18n = {
   ro: {
     wow: "Consultanță juridică pentru moldovenii din diaspora",
@@ -279,7 +273,6 @@ const i18n = {
     contactTitle: "Контакты",
   }
 };
-
 function setLang(lang) {
   document.documentElement.lang = lang;
   document.querySelectorAll("[data-i18n]").forEach(el => {
@@ -289,8 +282,5 @@ function setLang(lang) {
   document.querySelectorAll(".chip").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
   localStorage.setItem("lang", lang);
 }
-
-document.querySelectorAll(".chip").forEach(btn => {
-  btn.addEventListener("click", () => setLang(btn.dataset.lang));
-});
+document.querySelectorAll(".chip").forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.lang)));
 setLang(localStorage.getItem("lang") || "ro");
